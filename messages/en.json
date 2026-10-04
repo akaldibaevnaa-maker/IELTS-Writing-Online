@@ -1,0 +1,163 @@
+{
+  "Common": {
+    "slogan": "Write → Analyze → Understand → Practice → Improve",
+    "continue": "Continue →",
+    "analyze": "Analyze with AI",
+    "submit": "Submit"
+  },
+  "Navigation": {
+    "newEssay": "New Essay",
+    "myEssays": "My Essays",
+    "myProgress": "My Progress",
+    "settings": "Settings",
+    "myAccount": "My Account",
+    "teacherDashboard": "Dashboard",
+    "teacherEssays": "Review Essays",
+    "teacherProgress": "Progress Monitoring",
+    "teacherStudents": "Students List",
+    "teacherSettings": "Platform Settings",
+    "extraTasks": "Extra Tasks"
+  },
+  "Steps": {
+    "task": "Task",
+    "essay": "Essay",
+    "analysis": "Analysis",
+    "result": "Result",
+    "plan": "Plan"
+  },
+  "Step1": {
+    "title": "Enter the IELTS Writing Task 2 prompt",
+    "subtitle": "Paste your prompt here to get started.",
+    "placeholder": "Paste your task here...",
+    "classifier": "Task Type",
+    "autoIdentified": "Automatically identified as:",
+    "tipsTitle": "Tips",
+    "tipsDesc": "Read the prompt carefully to ensure you address all parts of the question.",
+    "tipsContent": "Read the prompt carefully to ensure you address all parts of the question."
+  },
+  "Step2": {
+    "title": "Submit your essay",
+    "pasteOrUpload": "Paste your text or upload a document (.docx, .txt, .pdf)",
+    "wordCountWarning": "⚠️ Your essay contains fewer than 250 words",
+    "wordCountGood": "Word count is sufficient"
+  },
+  "Analysis": {
+    "disclaimer": "Estimated AI Band Score. This score is not an official IELTS result."
+  },
+  "MyEssays": {
+    "title": "My Essays",
+    "subtitle": "Review your previously analyzed writing tasks.",
+    "viewAnalysis": "View AI Analysis",
+    "rewrite": "Rewrite",
+    "noEssays": "No essays found. Start writing!",
+    "teacherFeedbackAlert": "New teacher feedback received!",
+    "teacherScore": "Teacher Score",
+    "aiScore": "AI Score",
+    "pending": "Pending Teacher Review",
+    "viewFeedback": "Read Feedback"
+  },
+  "Progress": {
+    "title": "My Progress",
+    "subtitle": "Track your IELTS Writing improvement over time.",
+    "avgImprovement": "Avg Score Improvement",
+    "essaysWritten": "Essays Written",
+    "topWeakness": "Top Weakness",
+    "recent": "Recent Submissions",
+    "radarTitle": "Skills Breakdown"
+  },
+  "Settings": {
+    "title": "Settings",
+    "subtitle": "Manage your preferences and target score.",
+    "targetScore": "Target Band Score",
+    "explanationLang": "Interface and Hint Language",
+    "theme": "Theme",
+    "notifications": "Teacher Review Notifications",
+    "save": "Save Changes",
+    "saveSuccess": "Settings saved successfully!",
+    "density": "Interface Density / Font Size",
+    "densityNormal": "Normal",
+    "densityCompact": "Compact"
+  },
+  "Account": {
+    "title": "My Account",
+    "subtitle": "Manage your profile.",
+    "name": "Name",
+    "email": "Email",
+    "level": "Current Level",
+    "logout": "Log Out"
+  },
+  "Auth": {
+    "welcome": "Welcome to IELTS Write",
+    "subtitle": "Please enter your details to continue",
+    "fullName": "Full Name / Аты-жөні",
+    "role": "Role / Статус",
+    "group": "Class / Group",
+    "loginButton": "Continue / Жалғастыру"
+  },
+  "Admin": {
+    "title": "Teacher Dashboard",
+    "subtitle": "Live Leaderboard and Essay Monitoring",
+    "export": "Export Report",
+    "totalStudents": "Total Students",
+    "essaysAnalyzed": "Essays Analyzed",
+    "averageBand": "Average Band",
+    "liveLeaderboard": "Live Leaderboard",
+    "rank": "Rank",
+    "studentName": "Student Name",
+    "topic": "Topic",
+    "dynamics": "Dynamics / Progress",
+    "date": "Date",
+    "role": "Role",
+    "essays": "Essays",
+    "maxScore": "Max Score",
+    "lastScore": "Last Score",
+    "progress": "Progress",
+    "action": "Action",
+    "viewEssays": "View Essays",
+    "filterAll": "All",
+    "filterSchool": "School",
+    "filterUniversity": "University",
+    "delete": "Delete",
+    "pending": "Pending",
+    "graded": "Graded",
+    "checkAndEvaluate": "Check and Evaluate",
+    "close": "Close",
+    "essayText": "Essay Text",
+    "words": "words",
+    "highlightToComment": "Select any text to add an inline comment.",
+    "addComment": "Add Comment",
+    "teacherFeedback": "Teacher Feedback",
+    "aiScores": "AI Scores",
+    "overall": "Overall",
+    "strengths": "Strengths",
+    "weaknesses": "Areas for Growth",
+    "rewriteTask": "Rewrite Task",
+    "sendFeedback": "Send Feedback",
+    "feedbackSent": "Feedback sent successfully!"
+  },
+  "Login": {
+    "badge": "Innovative Educational Complex",
+    "description": "An educational platform for assessing IELTS Writing Task 2 essays with the help of artificial intelligence.",
+    "title": "Platform Access: Select your role",
+    "studentBtn": "Login as Student",
+    "teacherBtn": "Login as Teacher",
+    "fullName": "Full Name",
+    "group": "Class / Group",
+    "level": "English Level",
+    "enter": "Enter Platform",
+    "namePlaceholder": "Enter your full name...",
+    "groupPlaceholder": "Enter your class...",
+    "fillRequiredFields": "Please fill all fields",
+    "pin": "4-digit PIN Code",
+    "pinError": "Invalid PIN code",
+    "author": "Platform Author",
+    "authorName": "Nazerkie Zhanalykova Talgatovna",
+    "authorTitle": "Expert Teacher, Master of Pedagogical Sciences"
+  },
+  "ExtraTasks": {
+    "title": "Extra Tasks",
+    "subtitle": "Additional reading and writing assignments.",
+    "viewTask": "View Task",
+    "close": "Close"
+  }
+}
