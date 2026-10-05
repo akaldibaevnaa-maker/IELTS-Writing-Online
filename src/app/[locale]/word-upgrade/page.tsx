@@ -15,6 +15,8 @@ export default function WordUpgradePage() {
     '/word-upgrade/page-03.png',
     '/word-upgrade/page-04.png',
     '/word-upgrade/page-05.png',
+    '/word-upgrade/page-06.png',
+    '/word-upgrade/page-07.png',
   ];
 
   const handleNext = (e: React.MouseEvent) => {
