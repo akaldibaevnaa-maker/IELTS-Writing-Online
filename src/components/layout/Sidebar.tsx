@@ -2,7 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 import { Link, usePathname } from '@/i18n/routing';
-import { FileEdit, FileText, TrendingUp, Settings, User, LayoutDashboard, Users, BookOpen } from 'lucide-react';
+import { FileEdit, FileText, TrendingUp, Settings, User, LayoutDashboard, Users, BookOpen, Sparkles } from 'lucide-react';
 import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 
@@ -19,6 +19,7 @@ export default function Sidebar() {
     { name: t('newEssay', { defaultMessage: 'New Essay' }), href: '/new-essay/step-1', match: '/new-essay', icon: FileEdit },
     { name: t('myEssays', { defaultMessage: 'My Essays' }), href: '/my-essays', match: '/my-essays', icon: FileText },
     { name: t('myProgress', { defaultMessage: 'My Progress' }), href: '/progress', match: '/progress', icon: TrendingUp },
+    { name: 'WORD UPGRADE', href: '/word-upgrade', match: '/word-upgrade', icon: Sparkles },
     { name: t('extraTasks', { defaultMessage: 'Extra Tasks' }), href: '/extra-tasks', match: '/extra-tasks', icon: BookOpen },
     { name: t('settings', { defaultMessage: 'Settings' }), href: '/settings', match: '/settings', icon: Settings },
     { name: t('myAccount', { defaultMessage: 'My Account' }), href: '/account', match: '/account', icon: User },
