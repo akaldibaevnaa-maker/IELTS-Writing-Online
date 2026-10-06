@@ -133,13 +133,7 @@ export default function AccountPage() {
               </div>
             </div>
             
-            <div className="glass-panel p-6 rounded-3xl bg-white border-slate-200 shadow-sm">
-              <div className="flex items-center gap-3 mb-2">
-                <Users className="w-5 h-5 text-indigo-500" />
-                <h4 className="font-bold text-slate-800">Жетекшілік ететін топтар</h4>
-              </div>
-              <p className="text-slate-500 font-medium">10 «А», 11 «Б», Студенттер тобы</p>
-            </div>
+
           </div>
         </div>
       </div>
