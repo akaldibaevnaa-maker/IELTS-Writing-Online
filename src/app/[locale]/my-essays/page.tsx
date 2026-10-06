@@ -23,7 +23,7 @@ export default function MyEssaysPage() {
 
   if (!isLoaded) return null;
 
-  const myEssays = essays.filter(e => e.studentName === userName || userName === '');
+  const myEssays = essays.filter(e => userName && e.studentName === userName);
 
   const renderEssayWithHighlights = (essay: GlobalEssay) => {
     if (!essay.teacherFeedback) return null;

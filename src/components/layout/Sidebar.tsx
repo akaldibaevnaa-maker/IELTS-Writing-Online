@@ -10,10 +10,17 @@ export default function Sidebar() {
   const t = useTranslations('Navigation');
   const pathname = usePathname();
   const [isAdmin, setIsAdmin] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     setIsAdmin(localStorage.getItem('ielts_admin') === 'true');
+    
+    const handleToggle = () => setIsOpen(prev => !prev);
+    document.addEventListener('toggle_sidebar', handleToggle);
+    return () => document.removeEventListener('toggle_sidebar', handleToggle);
   }, []);
+
+  const closeSidebar = () => setIsOpen(false);
 
   const studentNav = [
     { name: t('newEssay', { defaultMessage: 'New Essay' }), href: '/new-essay/step-1', match: '/new-essay', icon: FileEdit },
@@ -36,15 +43,23 @@ export default function Sidebar() {
   const navItems = isAdmin ? teacherNav : studentNav;
 
   return (
-    <aside className="w-64 bg-white border-r border-slate-200 h-[calc(100vh-64px)] flex flex-col p-4 fixed left-0 top-[64px] z-20 pointer-events-auto shadow-sm">
-      <nav className="flex-1 space-y-2 mt-4">
-        {navItems.map((item) => {
-          // Special case for /admin so it doesn't match all /admin/* sub-routes unless intended
-          const isActive = item.href === '/admin' ? pathname === '/admin' : pathname.startsWith(item.match);
-          return (
-            <Link
-              key={item.href}
-              href={item.href}
+    <>
+      {isOpen && (
+        <div className="fixed inset-0 bg-slate-900/50 z-20" onClick={closeSidebar} />
+      )}
+      <aside className={clsx(
+        "w-64 bg-white border-r border-slate-200 h-[calc(100vh-64px)] flex flex-col p-4 fixed left-0 top-[64px] z-30 pointer-events-auto shadow-sm transition-transform duration-300",
+        isOpen ? "translate-x-0" : "-translate-x-full"
+      )}>
+        <nav className="flex-1 space-y-2 mt-4">
+          {navItems.map((item) => {
+            // Special case for /admin so it doesn't match all /admin/* sub-routes unless intended
+            const isActive = item.href === '/admin' ? pathname === '/admin' : pathname.startsWith(item.match);
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={closeSidebar}
               className={clsx(
                 'flex items-center gap-3 px-4 py-3.5 rounded-xl text-sm font-bold transition-all duration-200 relative overflow-hidden cursor-pointer active:scale-95',
                 isActive 
@@ -62,5 +77,6 @@ export default function Sidebar() {
         })}
       </nav>
     </aside>
+    </>
   );
 }

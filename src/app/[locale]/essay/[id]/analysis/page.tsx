@@ -7,6 +7,7 @@ import { useRouter } from '@/i18n/routing';
 import StepProgress from '@/components/layout/StepProgress';
 import { AlertCircle, FileEdit, ArrowRight, BrainCircuit, Activity, BookOpen, PenTool, FileText, ChevronRight } from 'lucide-react';
 import clsx from 'clsx';
+import { useGlobalEssays } from '@/hooks/useGlobalEssays';
 
 export default function AnalysisPage() {
   const t = useTranslations();
@@ -19,6 +20,8 @@ export default function AnalysisPage() {
   const [analysis, setAnalysis] = useState<any>(null);
   const [selectedError, setSelectedError] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+
+  const { addEssay } = useGlobalEssays();
 
   useEffect(() => {
     const fetchAnalysis = async () => {
@@ -41,6 +44,36 @@ export default function AnalysisPage() {
         const data = await response.json();
         setAnalysis(data);
         localStorage.setItem('ielts_analysis', JSON.stringify(data));
+        
+        // Save to global DB for the teacher only if not already saved for this specific essay text
+        const essayHash = String(storedEssay.length) + storedEssay.substring(0, 10);
+        if (localStorage.getItem('last_saved_essay_hash') !== essayHash) {
+          const studentName = localStorage.getItem('ielts_user_name') || 'Anonymous Student';
+          const group = localStorage.getItem('ielts_group') || 'Self-Study';
+          const level = localStorage.getItem('ielts_level') || 'Intermediate';
+          
+          await addEssay({
+            studentName,
+            group,
+            level,
+            taskTopic: storedTask.substring(0, 50) + '...',
+            type: data.detected_task_type || 'Task 2',
+            version: 'V1',
+            aiScore: {
+              overall: data.band_scores.overall,
+              tr: data.band_scores.task_response,
+              cc: data.band_scores.coherence_cohesion,
+              lr: data.band_scores.lexical_resource,
+              gra: data.band_scores.grammatical_accuracy
+            },
+            teacherFeedback: null,
+            submittedAt: new Date().toISOString(),
+            text: storedEssay
+          });
+          
+          localStorage.setItem('last_saved_essay_hash', essayHash);
+        }
+        
       } catch (err) {
         console.error(err);
       } finally {

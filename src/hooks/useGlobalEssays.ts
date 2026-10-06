@@ -94,34 +94,71 @@ export function useGlobalEssays() {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    const stored = localStorage.getItem('ielts_global_essays');
-    if (stored) {
-      setEssays(JSON.parse(stored));
-    } else {
-      setEssays(MOCK_ESSAYS);
-      localStorage.setItem('ielts_global_essays', JSON.stringify(MOCK_ESSAYS));
-    }
-    setIsLoaded(true);
+    const fetchEssays = async () => {
+      try {
+        const res = await fetch('/api/essays');
+        if (res.ok) {
+          const data = await res.json();
+          // If empty and we want to fallback to mock (for fresh installs)
+          if (data.length === 0) {
+            setEssays(MOCK_ESSAYS);
+            // Optionally save mock to remote, but let's just use it locally
+          } else {
+            setEssays(data);
+          }
+        } else {
+          setEssays(MOCK_ESSAYS);
+        }
+      } catch (err) {
+        console.error(err);
+        setEssays(MOCK_ESSAYS);
+      } finally {
+        setIsLoaded(true);
+      }
+    };
+    fetchEssays();
   }, []);
 
-  const saveFeedback = (essayId: string, feedback: TeacherFeedback) => {
+  const saveFeedback = async (essayId: string, feedback: TeacherFeedback) => {
     const updated = essays.map(e => e.id === essayId ? { ...e, teacherFeedback: feedback } : e);
     setEssays(updated);
-    localStorage.setItem('ielts_global_essays', JSON.stringify(updated));
+    
+    try {
+      await fetch('/api/essays', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'update_feedback', essayId, feedback })
+      });
+    } catch (e) { console.error(e); }
   };
 
-  const addEssay = (essay: Omit<GlobalEssay, 'id'>) => {
+  const addEssay = async (essay: Omit<GlobalEssay, 'id'>) => {
     const newEssay = { ...essay, id: Date.now().toString() };
     const updated = [newEssay, ...essays];
     setEssays(updated);
-    localStorage.setItem('ielts_global_essays', JSON.stringify(updated));
+    
+    try {
+      await fetch('/api/essays', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'add', essay: newEssay })
+      });
+    } catch (e) { console.error(e); }
+    
     return newEssay;
   };
 
-  const deleteEssay = (essayId: string) => {
+  const deleteEssay = async (essayId: string) => {
     const updated = essays.filter(e => e.id !== essayId);
     setEssays(updated);
-    localStorage.setItem('ielts_global_essays', JSON.stringify(updated));
+    
+    try {
+      await fetch('/api/essays', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'delete', essayId })
+      });
+    } catch (e) { console.error(e); }
   };
 
   return { essays, isLoaded, saveFeedback, addEssay, deleteEssay };

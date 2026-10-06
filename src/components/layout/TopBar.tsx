@@ -52,14 +52,17 @@ export default function TopBar() {
   return (
     <>
       <header className="h-16 bg-white border-b border-slate-200 fixed top-0 w-full z-10 px-6 flex items-center justify-between shadow-sm">
-        <div className="flex items-center gap-4 cursor-pointer" onClick={() => router.push('/')}>
-          <div className="logo-squircle">
+        <div className="flex items-center gap-4 cursor-pointer">
+          <button className="p-2 -ml-2 text-slate-500 hover:text-slate-800" onClick={() => document.dispatchEvent(new CustomEvent('toggle_sidebar'))}>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          </button>
+          <div className="logo-squircle" onClick={() => router.push('/')}>
             <span className="logo-text">ielts</span>
             <div className="logo-underline" />
           </div>
-          <div>
+          <div onClick={() => router.push('/')}>
             <h1 className="text-xl font-extrabold text-slate-900 tracking-tight flex items-center gap-1">
-              Writing <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-primary/10 text-primary uppercase ml-1">Beta</span>
+              Writing
             </h1>
             <p className="text-[11px] text-slate-500 font-bold tracking-wide hidden md:block uppercase">{t('slogan', { defaultMessage: 'AI Examiner & Tutor' })}</p>
           </div>

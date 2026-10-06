@@ -26,8 +26,8 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     <>
       <TopBar />
       <Sidebar />
-      <main className="pt-16 pl-64 min-h-screen relative z-0 flex flex-col">
-        <div className="p-8 flex-1">
+      <main className="pt-16 min-h-screen relative z-0 flex flex-col">
+        <div className="p-4 md:p-8 flex-1">
           {children}
         </div>
         <Footer />
