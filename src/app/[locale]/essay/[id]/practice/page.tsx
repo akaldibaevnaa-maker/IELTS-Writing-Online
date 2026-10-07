@@ -33,12 +33,18 @@ export default function PracticePage() {
   const currentDrill = drills[currentDrillIndex];
 
   const checkAnswer = () => {
-    if (userAnswer.trim().toLowerCase() === currentDrill.target.toLowerCase()) {
+    // Be more permissive since users are "improving" a sentence
+    if (userAnswer.trim().length > 3) {
       setDrillCompleted(true);
       setErrorHint(null);
     } else {
-      setErrorHint(currentDrill.hint);
+      setErrorHint("Your answer is too short. Please try to write a complete sentence.");
     }
+  };
+
+  const skipDrill = () => {
+    setDrillCompleted(true);
+    setErrorHint(null);
   };
 
   return (
@@ -108,12 +114,20 @@ export default function PracticePage() {
                   </div>
                 )}
                 <div className="flex items-center justify-between">
-                  <button 
-                    onClick={() => setErrorHint(currentDrill.hint)}
-                    className="text-sm text-slate-400 hover:text-primary font-bold transition-colors bg-slate-50 hover:bg-slate-100 px-4 py-2 rounded-lg"
-                  >
-                    Need a hint?
-                  </button>
+                  <div className="flex items-center gap-2">
+                    <button 
+                      onClick={() => setErrorHint(currentDrill.hint)}
+                      className="text-sm text-slate-400 hover:text-primary font-bold transition-colors bg-slate-50 hover:bg-slate-100 px-4 py-2 rounded-lg"
+                    >
+                      Need a hint?
+                    </button>
+                    <button 
+                      onClick={skipDrill}
+                      className="text-sm text-slate-400 hover:text-slate-600 font-bold transition-colors bg-slate-50 hover:bg-slate-100 px-4 py-2 rounded-lg"
+                    >
+                      Skip
+                    </button>
+                  </div>
                   <button 
                     onClick={checkAnswer}
                     className="bg-primary hover:bg-primary-hover text-white px-10 py-4 rounded-xl font-bold transition-all shadow-xl shadow-primary/20 active:scale-95 text-lg"
